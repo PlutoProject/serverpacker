@@ -6,13 +6,14 @@ import java.util.jar.Manifest
 
 object Constants {
 
-    val logger: Logger = LoggerFactory.getLogger("serverpacker")
-    val version = {
+    val logger: Logger = LoggerFactory.getLogger("link/plutomc/serverpacker")
+
+    fun version(): String {
         val classLoader = Entry::class.java.classLoader
         val manifest = Manifest(classLoader.getResourceAsStream("META-INF/MANIFEST.MF"))
         val attributes = manifest.mainAttributes
 
-        attributes.getValue("Implementation-Version")
+        return attributes.getValue("Implementation-Version")
     }
 
 }
