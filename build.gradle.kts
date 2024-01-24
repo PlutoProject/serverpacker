@@ -6,38 +6,28 @@ plugins {
 }
 
 group = "link.plutomc.serverpacker"
+version = "1.0.0"
 
-allprojects {
+repositories {
+    mavenCentral()
+}
 
-    apply {
-        plugin("java")
-        plugin("com.github.johnrengelman.shadow")
-        plugin("org.jetbrains.kotlin.jvm")
-    }
+dependencies {
+    implementation(kotlin("stdlib"))
+    implementation("org.slf4j:slf4j-api:2.0.11")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
+}
 
-    this.version = "1.0.0-SNAPSHOT"
+kotlin {
+    jvmToolchain(8)
+}
 
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        implementation(kotlin("stdlib"))
-        implementation("org.slf4j:slf4j-api:2.0.11")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-        implementation("ch.qos.logback:logback-classic:1.4.14")
-    }
-
-    kotlin {
-        jvmToolchain(8)
-    }
-
-    tasks.jar {
-        manifest {
-            attributes(
-                "Implementation-Title" to "serverpacker", "Implementation-Version" to "${rootProject.version}"
-            )
-        }
+tasks.jar {
+    manifest {
+        attributes(
+            "Implementation-Title" to "serverpacker", "Implementation-Version" to "${rootProject.version}"
+        )
     }
 }
 

@@ -1,1 +1,0 @@
-group = "link.plutomc.serverpacker.api"
