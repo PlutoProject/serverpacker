@@ -1,4 +1,6 @@
 package link.plutomc.serverpacker.api
 
-interface Configuration: File {
+import link.plutomc.serverpacker.api.file.LocalFile
+
+interface Configuration: LocalFile {
 }

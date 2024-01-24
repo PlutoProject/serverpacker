@@ -1,4 +1,6 @@
 package link.plutomc.serverpacker.api.plugin
 
-interface NetworkPlugin {
+import link.plutomc.serverpacker.api.Downloadable
+
+interface NetworkPlugin: Plugin, Downloadable {
 }

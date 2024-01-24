@@ -1,4 +1,6 @@
 package link.plutomc.serverpacker.api.plugin
 
-interface SpigotPlugin {
+import link.plutomc.serverpacker.api.Downloadable
+
+interface SpigotPlugin: Plugin, Downloadable {
 }

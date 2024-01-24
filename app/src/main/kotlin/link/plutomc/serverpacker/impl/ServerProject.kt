@@ -17,20 +17,20 @@ class ServerProject(
     override val profiles: Map<String, Profile>
         get() = _profiles
 
-    override fun registerProfile(name: String, profile: Profile) {
-        _profiles[name] = profile
+    override fun addProfile(profile: Profile) {
+        _profiles[profile.name] = profile
     }
 
     override fun buildZip() {
-        TODO("Not yet implemented")
+        _profiles.forEach { it.value.buildZip() }
     }
 
     override fun buildDocker() {
-        TODO("Not yet implemented")
+        _profiles.forEach { it.value.buildDocker() }
     }
 
     override fun buildPterodactyl() {
-        TODO("Not yet implemented")
+        _profiles.forEach { it.value.buildPterodactyl() }
     }
 
 }

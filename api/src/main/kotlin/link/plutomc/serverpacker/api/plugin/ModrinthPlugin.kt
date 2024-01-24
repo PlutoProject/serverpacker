@@ -1,4 +1,6 @@
 package link.plutomc.serverpacker.api.plugin
 
-interface ModrinthPlugin {
+import link.plutomc.serverpacker.api.Downloadable
+
+interface ModrinthPlugin: Plugin, Downloadable {
 }

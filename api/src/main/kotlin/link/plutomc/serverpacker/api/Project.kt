@@ -11,6 +11,6 @@ interface Project: Buildable {
     val buildOutputFolder: File
     val workDir: File
 
-    fun registerProfile(name: String, profile: Profile)
+    fun addProfile(profile: Profile)
 
 }
