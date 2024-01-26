@@ -6,7 +6,7 @@ import link.plutomc.serverpacker.logger
 import link.plutomc.serverpacker.utils.DownloadUtils
 import java.io.File
 
-class NetworkSource(private val url: String) : Source, Remote {
+open class NetworkSource(private val url: String, private val customFileName: String = "") : Source, Remote {
 
     override val file: File?
         get() {
@@ -21,6 +21,11 @@ class NetworkSource(private val url: String) : Source, Remote {
 
     override fun download(): Pair<Boolean, String> {
         logger.info("Downloading a network source:  $url...")
+
+        if (customFileName != "") {
+            return DownloadUtils.download(url, downloadCacheLocation, customFileName)
+        }
+
         return DownloadUtils.download(url, downloadCacheLocation)
     }
 

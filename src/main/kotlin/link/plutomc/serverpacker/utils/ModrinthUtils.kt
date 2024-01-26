@@ -36,7 +36,7 @@ object ModrinthUtils {
         return Pair(name, url)
     }
 
-    fun getProjectVersions(projectId: String): List<JsonElement> {
+    private fun getProjectVersions(projectId: String): List<JsonElement> {
         val url = "$MODRINTH_API/project/$projectId/version"
         val reqPair = NetworkUtils.requestAndGetRspJsonElement(url)
 
