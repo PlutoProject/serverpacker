@@ -6,7 +6,7 @@ import link.plutomc.serverpacker.logger
 import link.plutomc.serverpacker.utils.DownloadUtils
 import java.io.File
 
-class NetworkSource(private val url: String): Source, Remote {
+class NetworkSource(private val url: String) : Source, Remote {
 
     override val file: File?
         get() {

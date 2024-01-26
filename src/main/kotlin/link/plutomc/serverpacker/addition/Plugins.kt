@@ -3,7 +3,7 @@ package link.plutomc.serverpacker.addition
 import org.apache.commons.io.FileUtils
 import java.io.File
 
-class Plugins: Addition {
+class Plugins : Addition {
 
     private val _contents = hashMapOf<String, File>()
 
