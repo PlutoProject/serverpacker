@@ -15,21 +15,31 @@ class ModrinthSource(
 
     val downloadUrl: String
     val fileName: String
-    private val _file: File
+    private val _file: File?
+    private var _isAbleToReach = false
 
     init {
-        val pair = ModrinthUtils.getVersionDownloadUrlAndFilename(versionId)
-        downloadUrl = pair.second
-        fileName = pair.first
-        _file = File(downloadCacheLocation, fileName)
+        if (versionId != "") {
+            val pair = ModrinthUtils.getVersionDownloadUrlAndFilename(versionId)
+            downloadUrl = pair.second
+            fileName = pair.first
+            _file = File(downloadCacheLocation, fileName)
+            _isAbleToReach = true
+        } else {
+            downloadUrl = ""
+            fileName = ""
+            _file = null
+            _isAbleToReach = false
+        }
     }
 
     override fun download(): Pair<Boolean, String> {
+        /*
         if (_file.exists()) {
             logger.info("$fileName already existed in cache! Skipped download.")
             return Pair(true, fileName)
         }
-
+        */
         logger.info("Downloading $fileName...")
         return DownloadUtils.download(downloadUrl, downloadCacheLocation, fileName)
     }
@@ -38,7 +48,7 @@ class ModrinthSource(
         get() {
             var downloadResult = false
 
-            if (!_file.exists()) {
+            if (!_file!!.exists()) {
                 downloadResult = download().first
             }
 
@@ -48,5 +58,7 @@ class ModrinthSource(
 
             return _file
         }
+    override val isAbleToReach: Boolean
+        get() = _isAbleToReach
 
 }

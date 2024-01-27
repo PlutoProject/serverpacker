@@ -18,6 +18,10 @@ object ModrinthUtils {
 
         val jsonObject = checkNotNull(reqPair.second)
 
+        if (!jsonObject.has("files")) {
+            return listOf()
+        }
+
         return jsonObject.get("files").asJsonArray.asList()
     }
 

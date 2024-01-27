@@ -18,6 +18,8 @@ open class NetworkSource(private val url: String, private val customFileName: St
 
             return File(downloadCacheLocation, downloadStatus.second)
         }
+    override val isAbleToReach: Boolean
+        get() = true
 
     override fun download(): Pair<Boolean, String> {
         logger.info("Downloading a network source:  $url...")
