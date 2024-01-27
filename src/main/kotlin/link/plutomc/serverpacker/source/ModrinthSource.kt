@@ -1,7 +1,7 @@
 package link.plutomc.serverpacker.source
 
-import link.plutomc.serverpacker.Remote
-import link.plutomc.serverpacker.downloadCacheLocation
+import link.plutomc.serverpacker.project.Remote
+import link.plutomc.serverpacker.downloadCacheDir
 import link.plutomc.serverpacker.logger
 import link.plutomc.serverpacker.utils.DownloadUtils
 import link.plutomc.serverpacker.utils.ModrinthUtils
@@ -16,20 +16,20 @@ class ModrinthSource(
     val downloadUrl: String
     val fileName: String
     private val _file: File?
-    private var _isAbleToReach = false
+    private var _reachable = false
 
     init {
         if (versionId != "") {
             val pair = ModrinthUtils.getVersionDownloadUrlAndFilename(versionId)
             downloadUrl = pair.second
             fileName = pair.first
-            _file = File(downloadCacheLocation, fileName)
-            _isAbleToReach = true
+            _file = File(downloadCacheDir, fileName)
+            _reachable = true
         } else {
             downloadUrl = ""
             fileName = ""
             _file = null
-            _isAbleToReach = false
+            _reachable = false
         }
     }
 
@@ -41,7 +41,7 @@ class ModrinthSource(
         }
         */
         logger.info("Downloading $fileName...")
-        return DownloadUtils.download(downloadUrl, downloadCacheLocation, fileName)
+        return DownloadUtils.download(downloadUrl, downloadCacheDir, fileName)
     }
 
     override val file: File?
@@ -58,7 +58,7 @@ class ModrinthSource(
 
             return _file
         }
-    override val isAbleToReach: Boolean
-        get() = _isAbleToReach
+    override val reachable: Boolean
+        get() = _reachable
 
 }

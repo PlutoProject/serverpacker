@@ -1,7 +1,7 @@
 package link.plutomc.serverpacker.source
 
-import link.plutomc.serverpacker.Remote
-import link.plutomc.serverpacker.downloadCacheLocation
+import link.plutomc.serverpacker.project.Remote
+import link.plutomc.serverpacker.downloadCacheDir
 import link.plutomc.serverpacker.logger
 import link.plutomc.serverpacker.utils.DownloadUtils
 import java.io.File
@@ -16,19 +16,19 @@ open class NetworkSource(private val url: String, private val customFileName: St
                 return null
             }
 
-            return File(downloadCacheLocation, downloadStatus.second)
+            return File(downloadCacheDir, downloadStatus.second)
         }
-    override val isAbleToReach: Boolean
+    override val reachable: Boolean
         get() = true
 
     override fun download(): Pair<Boolean, String> {
         logger.info("Downloading a network source:  $url...")
 
         if (customFileName != "") {
-            return DownloadUtils.download(url, downloadCacheLocation, customFileName)
+            return DownloadUtils.download(url, downloadCacheDir, customFileName)
         }
 
-        return DownloadUtils.download(url, downloadCacheLocation)
+        return DownloadUtils.download(url, downloadCacheDir)
     }
 
 }

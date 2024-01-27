@@ -3,22 +3,12 @@ package link.plutomc.serverpacker.addition
 import org.apache.commons.io.FileUtils
 import java.io.File
 
-class Mods(private val profileDir: File) : Addition {
+class Root(override val folder: File) : Addition {
 
     private val _contents = hashMapOf<String, File>()
 
     override val folderName: String
-        get() = "mods"
-    override val folder: File
-        get() {
-            val dir = File(profileDir, folderName)
-
-            if (!dir.exists()) {
-                dir.mkdirs()
-            }
-
-            return dir
-        }
+        get() = folder.name
     override val contents: Map<String, File>
         get() = _contents
 

@@ -1,6 +1,6 @@
 package link.plutomc.serverpacker.utils
 
-import link.plutomc.serverpacker.downloadCacheLocation
+import link.plutomc.serverpacker.downloadCacheDir
 import link.plutomc.serverpacker.logger
 import okhttp3.Request
 import okhttp3.Response
@@ -32,7 +32,7 @@ object DownloadUtils {
             customFileName
         }
 
-        if (File(downloadCacheLocation, fileName).exists()) {
+        if (File(downloadCacheDir, fileName).exists()) {
             logger.info("$fileName already existed in cache! Skipped download.")
             return Pair(true, fileName)
         }

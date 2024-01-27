@@ -21,6 +21,10 @@ dependencies {
     implementation("commons-io:commons-io:2.15.1")
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.12")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.electronwill.night-config:toml:3.6.0")
+    implementation("com.electronwill.night-config:json:3.6.0")
+    implementation("com.electronwill.night-config:hocon:3.6.0")
+    implementation("com.electronwill.night-config:yaml:3.6.0")
 }
 
 kotlin {

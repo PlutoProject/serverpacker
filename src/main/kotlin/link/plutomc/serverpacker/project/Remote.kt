@@ -1,4 +1,4 @@
-package link.plutomc.serverpacker
+package link.plutomc.serverpacker.project
 
 interface Remote {
 

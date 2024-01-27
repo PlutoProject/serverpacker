@@ -7,15 +7,16 @@ import java.io.File
 
 internal var logger: Logger = LoggerFactory.getLogger("serverpacker")
 internal var version = "1.0.0"
-internal lateinit var downloadCacheLocation: File
+internal val workDir = File(System.getProperty("user.dir"))
+internal lateinit var cacheDir: File
+internal lateinit var downloadCacheDir: File
 
 fun main(args: Array<String>): Unit = runBlocking {
     logger.info("serverpacker v$version.")
 
-    val workDir = File(System.getProperty("user.dir"))
-    downloadCacheLocation = File(workDir, "/cache/downloads/")
+    downloadCacheDir = File(workDir, "/cache/downloads/")
 
-    if (!downloadCacheLocation.exists()) {
-        downloadCacheLocation.mkdirs()
+    if (!downloadCacheDir.exists()) {
+        downloadCacheDir.mkdirs()
     }
 }

@@ -3,14 +3,22 @@ package link.plutomc.serverpacker.addition
 import org.apache.commons.io.FileUtils
 import java.io.File
 
-class Plugins : Addition {
+class Plugins(private val profileDir: File) : Addition {
 
     private val _contents = hashMapOf<String, File>()
 
     override val folderName: String
         get() = "plugins"
     override val folder: File
-        get() = File(folderName)
+        get() {
+            val dir = File(profileDir, folderName)
+
+            if (!dir.exists()) {
+                dir.mkdirs()
+            }
+
+            return dir
+        }
     override val contents: Map<String, File>
         get() = _contents
 
