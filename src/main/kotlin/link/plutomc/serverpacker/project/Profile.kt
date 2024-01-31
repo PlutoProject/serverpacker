@@ -8,14 +8,14 @@ import java.io.File
 
 class Profile(
     private val name: String,
+    private val version: String,
     private val software: Source,
     val profileDir: File
 ) {
 
-    private val plugins = Plugins(this)
-    private val mods = Mods(this)
-    private val configs = Configs(this)
-    val vmFlags = "java -jar ${software.file?.name}"
+    var plugins = Plugins(this)
+    var mods = Mods(this)
+    var configs = Configs(this)
 
     fun copyContents() {
         plugins.copyContents()
