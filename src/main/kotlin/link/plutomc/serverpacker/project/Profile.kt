@@ -1,6 +1,7 @@
 package link.plutomc.serverpacker.project
 
 import link.plutomc.serverpacker.addition.Configs
+import link.plutomc.serverpacker.addition.Mods
 import link.plutomc.serverpacker.addition.Plugins
 import link.plutomc.serverpacker.source.Source
 import java.io.File
@@ -12,20 +13,14 @@ class Profile(
 ) {
 
     private val plugins = Plugins(this)
-    private val mods = Plugins(this)
+    private val mods = Mods(this)
     private val configs = Configs(this)
-    private val vmFlags = VMFlags()
+    val vmFlags = "java -jar ${software.file?.name}"
 
-    fun buildZip() {
-
-    }
-
-    fun buildDockerImage() {
-
-    }
-
-    fun run() {
-
+    fun copyContents() {
+        plugins.copyContents()
+        mods.copyContents()
+        configs.copyContents()
     }
 
 }
