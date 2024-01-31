@@ -1,6 +1,7 @@
 package link.plutomc.serverpacker
 
 import kotlinx.coroutines.runBlocking
+import link.plutomc.serverpacker.project.StartScript
 import link.plutomc.serverpacker.utils.OSType
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -23,7 +24,7 @@ fun main(args: Array<String>): Unit = runBlocking {
         OSType.Windows
     } else (if (os.lowercase().contains("linux")) {
         OSType.Linux
-    } else if (os.lowercase().contains("macos")) {
+    } else if (os.lowercase().contains("mac")) {
         OSType.MacOS
     } else {
         OSType.Unknown
@@ -33,9 +34,23 @@ fun main(args: Array<String>): Unit = runBlocking {
 
     logger.info("Running on $os.")
 
-    downloadCacheDir = File(workDir, "/cache/downloads/")
-
-    if (!downloadCacheDir.exists()) {
-        downloadCacheDir.mkdirs()
+    cacheDir = File(workDir, "cache/").apply {
+        if (!exists()) {
+            mkdirs()
+        }
     }
+
+    downloadCacheDir = File(cacheDir, "downloads/").apply {
+        if (!exists()) {
+            mkdirs()
+        }
+    }
+
+    val script = StartScript()
+
+    script.xmx = "1G"
+    script.xms = "1G"
+
+    script.generateWindows()
+    script.generateUnixOrLinux()
 }
