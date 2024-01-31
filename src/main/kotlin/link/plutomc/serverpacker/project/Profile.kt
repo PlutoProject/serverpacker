@@ -8,11 +8,24 @@ import java.io.File
 class Profile(
     private val name: String,
     private val software: Source,
-    private val profileDir: File
+    val profileDir: File
 ) {
 
-    private val plugins = Plugins(profileDir)
-    private val mods = Plugins(profileDir)
-    private val configs = Configs(profileDir)
+    private val plugins = Plugins(this)
+    private val mods = Plugins(this)
+    private val configs = Configs(this)
+    private val vmFlags = VMFlags()
+
+    fun buildZip() {
+
+    }
+
+    fun buildDockerImage() {
+
+    }
+
+    fun run() {
+
+    }
 
 }

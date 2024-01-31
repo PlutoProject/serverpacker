@@ -1,9 +1,10 @@
 package link.plutomc.serverpacker.addition
 
+import link.plutomc.serverpacker.project.Profile
 import org.apache.commons.io.FileUtils
 import java.io.File
 
-class Configs(private val profileDir: File) : Addition {
+class Configs(private val profile: Profile) : Addition {
 
     private val _contents = hashMapOf<String, File>()
 
@@ -11,7 +12,7 @@ class Configs(private val profileDir: File) : Addition {
         get() = "config"
     override val folder: File
         get() {
-            val dir = File(profileDir, folderName)
+            val dir = File(profile.profileDir, folderName)
 
             if (!dir.exists()) {
                 dir.mkdirs()
