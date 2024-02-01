@@ -65,7 +65,7 @@ class StartScript {
     private fun getStartCmd(): String {
         val script = StringBuilder()
 
-        script.append("$javaExec ")
+        script.append("$javaExec -jar")
 
         if (xmx != "") {
             script.append("-Xmx$xmx ")
