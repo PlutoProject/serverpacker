@@ -1,7 +1,9 @@
 package link.plutomc.serverpacker
 
 import kotlinx.coroutines.runBlocking
+import link.plutomc.serverpacker.project.Profile
 import link.plutomc.serverpacker.project.StartScript
+import link.plutomc.serverpacker.source.NetworkSource
 import link.plutomc.serverpacker.utils.OSType
 import link.plutomc.serverpacker.utils.checkOrCreate
 import org.slf4j.Logger
@@ -35,11 +37,5 @@ fun main(args: Array<String>): Unit = runBlocking {
 
     logger.info("Running on $os.")
 
-    val script = StartScript()
-
-    script.xmx = "1G"
-    script.xms = "1G"
-
-    script.generateWindows()
-    script.generateUnixOrLinux()
+    val profile = Profile("test", "1.0.0", NetworkSource("https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/405/downloads/paper-1.20.4-405.jar"), File(workDir, "test/").checkOrCreate())
 }

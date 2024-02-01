@@ -4,7 +4,8 @@ import java.io.File
 
 interface Source {
 
-    val file: File?
-    val reachable: Boolean
+    val file: File
+
+    fun resolve(): Boolean
 
 }

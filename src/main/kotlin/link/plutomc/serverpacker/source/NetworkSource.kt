@@ -6,29 +6,19 @@ import link.plutomc.serverpacker.project.Remote
 import link.plutomc.serverpacker.utils.DownloadUtils
 import java.io.File
 
-open class NetworkSource(private val url: String, private val customFileName: String = "") : Source, Remote {
+class NetworkSource(private val url: String, private val customFileName: String = "") : Source {
 
-    override val file: File?
+    override val file: File
         get() {
-            val downloadStatus = download()
-
-            if (!downloadStatus.first) {
-                return null
+            if (customFileName != "") {
+                return File(downloadCacheDir, customFileName)
             }
 
-            return File(downloadCacheDir, downloadStatus.second)
-        }
-    override val reachable: Boolean
-        get() = true
-
-    override fun download(): Pair<Boolean, String> {
-        logger.info("Downloading a network source:  $url...")
-
-        if (customFileName != "") {
-            return DownloadUtils.download(url, downloadCacheDir, customFileName)
+            return File(downloadCacheDir, checkNotNull(DownloadUtils.getFilenameWithoutDownload(url)))
         }
 
-        return DownloadUtils.download(url, downloadCacheDir)
+    override fun resolve(): Boolean {
+        return DownloadUtils.download(url, file)
     }
 
 }

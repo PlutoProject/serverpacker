@@ -13,7 +13,7 @@ object DownloadUtils {
     private const val BUFFER_SIZE = 4096
 
 
-    fun download(source: String, destFolder: File, customFileName: String = ""): Pair<Boolean, String> {
+    fun download(source: String, destFile: File): Boolean {
         val req = Request.Builder()
             .url(source)
             .header("User-Agent", NetworkUtils.USER_AGENT)
@@ -23,24 +23,26 @@ object DownloadUtils {
 
         if (!rsp.isSuccessful) {
             logger.error("Failed to download: $source, code: ${rsp.code}, message: ${rsp.message}!")
-            return Pair(false, "")
+            return false
         }
 
-        val fileName: String = if (customFileName == "") {
-            getFileNameFromHeaders(rsp) ?: source.substring(source.lastIndexOf('/'), source.length)
+        if (getFilenameWithoutDownload(source) == null) {
+            return false
+        }
+
+/*        val fileName: String = if (customFileName == "") {
+            checkNotNull(getFilenameWithoutDownload(source))
         } else {
             customFileName
-        }
+        }*/
 
-        if (File(downloadCacheDir, fileName).exists()) {
-            logger.info("$fileName already existed in cache! Skipped download.")
-            return Pair(true, fileName)
+        if (destFile.exists()) {
+            logger.info("${destFile.name} already existed in cache! Skipped download.")
+            return true
         }
-
-        val dest = File(destFolder, fileName)
 
         val inputStream = rsp.body.byteStream()
-        val outputStream = FileOutputStream(dest)
+        val outputStream = FileOutputStream(destFile)
         val buffer = ByteArray(BUFFER_SIZE)
         var bytesRead: Int
 
@@ -49,7 +51,23 @@ object DownloadUtils {
         }
 
         logger.debug("Downloaded: $source")
-        return Pair(true, fileName)
+        return true
+    }
+
+    fun getFilenameWithoutDownload(source: String): String? {
+        val req = Request.Builder()
+            .url(source)
+            .head()
+            .header("User-Agent", NetworkUtils.USER_AGENT)
+            .build()
+
+        val rsp = NetworkUtils.HTTP_CLIENT.newCall(req).execute()
+
+        if (!rsp.isSuccessful) {
+            return null
+        }
+
+        return getFileNameFromHeaders(rsp) ?: source.substring(source.lastIndexOf('/'), source.length)
     }
 
     private fun getFileNameFromHeaders(response: Response): String? {

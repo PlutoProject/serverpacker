@@ -4,7 +4,8 @@ import java.io.File
 
 data class LocalSource(override val file: File) : Source {
 
-    override val reachable: Boolean
-        get() = file.exists()
+    override fun resolve(): Boolean {
+        return file.exists()
+    }
 
 }

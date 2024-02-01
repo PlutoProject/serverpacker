@@ -4,7 +4,9 @@ import link.plutomc.serverpacker.cacheDir
 import link.plutomc.serverpacker.source.LocalSource
 import link.plutomc.serverpacker.source.Source
 import org.apache.commons.io.FileUtils
+import java.io.BufferedReader
 import java.io.File
+import java.io.InputStreamReader
 
 class StartScript {
 
@@ -64,6 +66,12 @@ class StartScript {
     }
 
     private fun appendStartCommand(script: StringBuilder) {
+        script.append(getStartCmd())
+    }
+
+    private fun getStartCmd(): String {
+        val script = StringBuilder()
+
         script.append("$javaExec ")
 
         if (xmx != "") {
@@ -95,6 +103,12 @@ class StartScript {
         arguments.forEach {
             script.append("$it ")
         }
+
+        return script.toString()
+    }
+
+    fun run() {
+        ProcessBuilder()
     }
 
 }
