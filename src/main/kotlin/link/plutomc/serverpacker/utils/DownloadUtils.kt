@@ -1,6 +1,5 @@
 package link.plutomc.serverpacker.utils
 
-import link.plutomc.serverpacker.downloadCacheDir
 import link.plutomc.serverpacker.logger
 import okhttp3.Request
 import okhttp3.Response
@@ -36,11 +35,11 @@ object DownloadUtils {
             return false
         }
 
-/*        val fileName: String = if (customFileName == "") {
-            checkNotNull(getFilenameWithoutDownload(source))
-        } else {
-            customFileName
-        }*/
+        /*        val fileName: String = if (customFileName == "") {
+                    checkNotNull(getFilenameWithoutDownload(source))
+                } else {
+                    customFileName
+                }*/
 
         val inputStream = rsp.body.byteStream()
         val outputStream = FileOutputStream(destFile)

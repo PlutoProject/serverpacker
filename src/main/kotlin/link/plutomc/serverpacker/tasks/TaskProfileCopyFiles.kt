@@ -6,7 +6,7 @@ import link.plutomc.serverpacker.startScriptCache
 import org.apache.commons.io.FileUtils
 import java.io.File
 
-object TaskProfileCopyFiles: Task {
+object TaskProfileCopyFiles : Task {
 
     override fun run(profile: Profile) {
         logger.info("Copying cache files for ${profile.name}...")
@@ -18,7 +18,10 @@ object TaskProfileCopyFiles: Task {
         profile.configs.copyContents()
 
         FileUtils.copyFile(File(startScriptCache, "start_windows.bat"), File(profile.profileDir, "start_windows.bat"))
-        FileUtils.copyFile(File(startScriptCache, "start_linux_unix.sh"), File(profile.profileDir, "start_linux_unix.sh"))
+        FileUtils.copyFile(
+            File(startScriptCache, "start_linux_unix.sh"),
+            File(profile.profileDir, "start_linux_unix.sh")
+        )
     }
 
 }

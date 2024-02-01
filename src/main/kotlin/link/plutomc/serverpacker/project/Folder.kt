@@ -5,7 +5,7 @@ import link.plutomc.serverpacker.utils.dirCheckAndCreate
 import org.apache.commons.io.FileUtils
 import java.io.File
 
-class Folder(override val name: String, private val profile: Profile): IFolder {
+class Folder(override val name: String, private val profile: Profile) : IFolder {
 
     private val _contents = arrayListOf<Source>()
 
@@ -20,7 +20,7 @@ class Folder(override val name: String, private val profile: Profile): IFolder {
         }
     }
 
-    override fun  addContent(source: Source) {
+    override fun addContent(source: Source) {
         _contents.add(source)
     }
 

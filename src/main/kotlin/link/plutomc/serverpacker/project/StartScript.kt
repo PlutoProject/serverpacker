@@ -1,13 +1,10 @@
 package link.plutomc.serverpacker.project
 
-import link.plutomc.serverpacker.cacheDir
 import link.plutomc.serverpacker.source.LocalSource
 import link.plutomc.serverpacker.source.Source
 import link.plutomc.serverpacker.startScriptCache
 import org.apache.commons.io.FileUtils
-import java.io.BufferedReader
 import java.io.File
-import java.io.InputStreamReader
 
 class StartScript {
 
@@ -104,7 +101,7 @@ class StartScript {
     }
 
     fun run() {
-        ProcessBuilder()
+        TODO("Run script.")
     }
 
 }

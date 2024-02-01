@@ -1,10 +1,6 @@
 package link.plutomc.serverpacker
 
 import kotlinx.coroutines.runBlocking
-import link.plutomc.serverpacker.project.Profile
-import link.plutomc.serverpacker.source.ModrinthSource
-import link.plutomc.serverpacker.source.NetworkSource
-import link.plutomc.serverpacker.tasks.*
 import link.plutomc.serverpacker.utils.OSType
 import link.plutomc.serverpacker.utils.dirCheckAndCreate
 import org.slf4j.Logger

@@ -1,8 +1,6 @@
 package link.plutomc.serverpacker.source
 
 import link.plutomc.serverpacker.downloadCacheDir
-import link.plutomc.serverpacker.logger
-import link.plutomc.serverpacker.project.Remote
 import link.plutomc.serverpacker.utils.DownloadUtils
 import java.io.File
 
