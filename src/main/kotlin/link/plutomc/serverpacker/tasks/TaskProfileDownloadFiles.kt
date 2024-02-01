@@ -8,7 +8,7 @@ import link.plutomc.serverpacker.logger
 import link.plutomc.serverpacker.project.Profile
 
 @OptIn(DelicateCoroutinesApi::class)
-object TaskDownloadFiles : Task {
+object TaskProfileDownloadFiles : Task {
 
     override fun run(profile: Profile) {
         logger.info("Downloading files for ${profile.name}...")

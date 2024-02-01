@@ -14,5 +14,5 @@ data class Profile(
     var mods = Folder("mods", this)
     var configs = Folder("config", this)
     var startScript = StartScript()
-
+    var eula = false
 }

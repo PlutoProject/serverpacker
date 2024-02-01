@@ -11,7 +11,7 @@ import java.net.URLDecoder
 object DownloadUtils {
 
 
-    private const val BUFFER_SIZE = 4096
+    const val BUFFER_SIZE = 4096
 
 
     fun download(source: String, destFile: File): Boolean {
@@ -51,7 +51,7 @@ object DownloadUtils {
             outputStream.write(buffer, 0, bytesRead)
         }
 
-        logger.debug("Downloaded: $source")
+        logger.info("Downloaded: $source")
         return true
     }
 

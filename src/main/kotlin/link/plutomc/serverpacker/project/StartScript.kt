@@ -3,6 +3,7 @@ package link.plutomc.serverpacker.project
 import link.plutomc.serverpacker.cacheDir
 import link.plutomc.serverpacker.source.LocalSource
 import link.plutomc.serverpacker.source.Source
+import link.plutomc.serverpacker.startScriptCache
 import org.apache.commons.io.FileUtils
 import java.io.BufferedReader
 import java.io.File
@@ -19,14 +20,9 @@ class StartScript {
     var flags = arrayListOf<String>()
     var arguments = arrayListOf<String>()
     var jar = "server.jar"
-    private val cache = File(cacheDir, "startScripts/").apply {
-        if (!exists()) {
-            mkdirs()
-        }
-    }
 
     fun generateWindows(): Source {
-        val file = File(cache, "start_windows.bat")
+        val file = File(startScriptCache, "start_windows.bat")
 
         if (file.exists()) {
             file.delete()
@@ -46,7 +42,7 @@ class StartScript {
     }
 
     fun generateUnixOrLinux(): Source {
-        val file = File(cache, "start_linux_unix.sh")
+        val file = File(startScriptCache, "start_linux_unix.sh")
 
         if (file.exists()) {
             file.delete()

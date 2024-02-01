@@ -25,6 +25,7 @@ dependencies {
     implementation("com.electronwill.night-config:json:3.6.0")
     implementation("com.electronwill.night-config:hocon:3.6.0")
     implementation("com.electronwill.night-config:yaml:3.6.0")
+    implementation("org.apache.commons:commons-compress:1.25.0")
 }
 
 kotlin {
