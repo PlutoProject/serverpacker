@@ -1,6 +1,5 @@
-package link.plutomc.serverpacker.addition
+package link.plutomc.serverpacker.project
 
-import link.plutomc.serverpacker.project.Profile
 import link.plutomc.serverpacker.source.Source
 import link.plutomc.serverpacker.utils.checkAndCreate
 import org.apache.commons.io.FileUtils
@@ -19,6 +18,10 @@ class Folder(override val name: String, private val profile: Profile): IFolder {
         _contents.forEach {
             FileUtils.copyFile(it.file, File(actual, it.file.name))
         }
+    }
+
+    override fun addContent(source: Source) {
+        _contents.add(source)
     }
 
 }

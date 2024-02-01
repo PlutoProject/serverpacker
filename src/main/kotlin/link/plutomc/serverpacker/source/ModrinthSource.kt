@@ -29,6 +29,8 @@ class ModrinthSource(
 
     override val file: File
         get() = File(downloadCacheDir, fileName)
+    override val url: String
+        get() = downloadUrl
 
     override fun resolve(): Boolean {
         return DownloadUtils.download(downloadUrl, file)

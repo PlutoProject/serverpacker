@@ -6,6 +6,7 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.File
 import java.io.FileOutputStream
+import java.net.URLDecoder
 
 object DownloadUtils {
 
@@ -14,6 +15,11 @@ object DownloadUtils {
 
 
     fun download(source: String, destFile: File): Boolean {
+        if (destFile.exists()) {
+            logger.info("${destFile.name} already existed in cache! Skipped download.")
+            return true
+        }
+
         val req = Request.Builder()
             .url(source)
             .header("User-Agent", NetworkUtils.USER_AGENT)
@@ -35,11 +41,6 @@ object DownloadUtils {
         } else {
             customFileName
         }*/
-
-        if (destFile.exists()) {
-            logger.info("${destFile.name} already existed in cache! Skipped download.")
-            return true
-        }
 
         val inputStream = rsp.body.byteStream()
         val outputStream = FileOutputStream(destFile)
@@ -74,15 +75,25 @@ object DownloadUtils {
         val contentDisposition = response.header("Content-Disposition")
 
         if (!contentDisposition.isNullOrEmpty()) {
-            val parts = contentDisposition.split(";")
-            for (part in parts) {
-                if (part.trim().startsWith("filename")) {
-                    val fileNameParts = part.split("=")
-                    if (fileNameParts.size > 1) {
-                        return fileNameParts[1].trim().replace("\"", "")
-                    }
-                }
-            }
+            extractFileName(contentDisposition)
+        }
+
+        return null
+    }
+
+    fun extractFileName(contentDisposition: String): String? {
+        // 尝试匹配基本形式
+        val basicRegex = """filename="([^"]*)"""".toRegex(RegexOption.IGNORE_CASE)
+        basicRegex.find(contentDisposition)?.let {
+            return it.groupValues[1]
+        }
+
+        // 尝试匹配编码扩展形式，同时提取字符集
+        val extendedRegex = """filename\*=([^']*)'[^']*'([^']+)(?:;|$)""".toRegex(RegexOption.IGNORE_CASE)
+        extendedRegex.find(contentDisposition)?.let {
+            val charset = it.groupValues[1].ifEmpty { "UTF-8" } // 如果没有指定字符集，默认使用 UTF-8
+            val encodedFilename = it.groupValues[2]
+            return URLDecoder.decode(encodedFilename, charset)
         }
 
         return null

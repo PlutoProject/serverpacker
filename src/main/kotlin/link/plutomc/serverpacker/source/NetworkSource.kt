@@ -6,7 +6,7 @@ import link.plutomc.serverpacker.project.Remote
 import link.plutomc.serverpacker.utils.DownloadUtils
 import java.io.File
 
-class NetworkSource(private val url: String, private val customFileName: String = "") : Source {
+class NetworkSource(override val url: String, private val customFileName: String = "") : Source {
 
     override val file: File
         get() {

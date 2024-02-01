@@ -1,10 +1,6 @@
 package link.plutomc.serverpacker.project
 
-import link.plutomc.serverpacker.addition.Configs
-import link.plutomc.serverpacker.addition.Mods
-import link.plutomc.serverpacker.addition.Plugins
 import link.plutomc.serverpacker.source.Source
-import org.apache.commons.io.FileUtils
 import java.io.File
 
 data class Profile(
@@ -14,9 +10,9 @@ data class Profile(
     val profileDir: File
 ) {
 
-    var plugins = Plugins(this)
-    var mods = Mods(this)
-    var configs = Configs(this)
+    var plugins = Folder("plugins", this)
+    var mods = Folder("mods", this)
+    var configs = Folder("config", this)
     var startScript = StartScript()
 
 }
