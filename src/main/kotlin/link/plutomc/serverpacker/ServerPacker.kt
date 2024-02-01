@@ -2,6 +2,7 @@ package link.plutomc.serverpacker
 
 import kotlinx.coroutines.runBlocking
 import link.plutomc.serverpacker.utils.OSType
+import link.plutomc.serverpacker.utils.Timer
 import link.plutomc.serverpacker.utils.dirCheckAndCreate
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -31,4 +32,8 @@ internal val osType = if (os.lowercase().contains("windows")) {
 fun main(args: Array<String>): Unit = runBlocking {
     logger.info("serverpacker v$version.")
     logger.info("Running on $os.")
+
+    val timer = Timer()
+
+    logger.info("Done! Used ${timer.endTimer()}ms to finish.")
 }

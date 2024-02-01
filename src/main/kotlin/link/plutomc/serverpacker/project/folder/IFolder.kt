@@ -1,4 +1,4 @@
-package link.plutomc.serverpacker.project
+package link.plutomc.serverpacker.project.folder
 
 import link.plutomc.serverpacker.source.Source
 import java.io.File

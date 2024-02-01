@@ -1,8 +1,9 @@
-package link.plutomc.serverpacker.project
+package link.plutomc.serverpacker.project.folder
 
+import link.plutomc.serverpacker.project.Profile
 import link.plutomc.serverpacker.source.Source
+import link.plutomc.serverpacker.utils.copyFileOrDirectory
 import link.plutomc.serverpacker.utils.dirCheckAndCreate
-import org.apache.commons.io.FileUtils
 import java.io.File
 
 class Folder(override val name: String, private val profile: Profile) : IFolder {
@@ -16,12 +17,14 @@ class Folder(override val name: String, private val profile: Profile) : IFolder 
 
     override fun copyContents() {
         _contents.forEach {
-            FileUtils.copyFile(it.file, File(actual, it.file.name))
+            copyFileOrDirectory(it.file, File(actual, it.file.name))
         }
     }
 
     override fun addContent(source: Source) {
-        _contents.add(source)
+        if (!_contents.contains(source)) {
+            _contents.add(source)
+        }
     }
 
 }

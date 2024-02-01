@@ -2,11 +2,13 @@ plugins {
     id("java")
     id("application")
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    kotlin("jvm") version "1.9.0"
+    kotlin("jvm") version "1.8.21"
 }
 
 group = "link.plutomc.serverpacker"
 version = "1.0.0"
+
+extra("")
 
 repositories {
     mavenCentral()
@@ -26,6 +28,10 @@ dependencies {
     implementation("com.electronwill.night-config:hocon:3.6.0")
     implementation("com.electronwill.night-config:yaml:3.6.0")
     implementation("org.apache.commons:commons-compress:1.25.0")
+    implementation("org.jetbrains.kotlin:kotlin-scripting-common")
+    implementation("org.jetbrains.kotlin:kotlin-scripting-jvm")
+    implementation("org.jetbrains.kotlin:kotlin-scripting-jvm-host")
+    implementation("org.jetbrains.kotlin:kotlin-main-kts")
 }
 
 kotlin {
