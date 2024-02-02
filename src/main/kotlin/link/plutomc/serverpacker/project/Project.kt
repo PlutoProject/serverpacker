@@ -1,8 +1,13 @@
 package link.plutomc.serverpacker.project
 
-class Project() {
+class Project(
+    private val name: String
+) {
 
-    lateinit var name: String
-    var profiles = mutableListOf<Profile>()
+    private val profiles = mutableListOf<Profile>()
+
+    fun addProfile(profile: Profile) {
+
+    }
 
 }

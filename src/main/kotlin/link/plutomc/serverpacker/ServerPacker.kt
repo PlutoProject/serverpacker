@@ -13,6 +13,7 @@ internal var logger: Logger = LoggerFactory.getLogger("serverpacker")
 internal var version = "1.0.0"
 internal val workDir = File(System.getProperty("user.dir"))
 internal val cacheDir = File(workDir, "cache/").dirCheckAndCreate()
+internal val profileCacheDir = File(cacheDir, "profiles/").dirCheckAndCreate()
 internal val outputsDir = File(workDir, "outputs/").dirCheckAndCreate()
 internal val downloadCacheDir = File(cacheDir, "downloads/").dirCheckAndCreate()
 internal val startScriptCache = File(cacheDir, "startScripts/").dirCheckAndCreate()
