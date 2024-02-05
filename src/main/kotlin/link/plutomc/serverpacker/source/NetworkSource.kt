@@ -4,7 +4,7 @@ import link.plutomc.serverpacker.downloadCacheDir
 import link.plutomc.serverpacker.utils.DownloadUtils
 import java.io.File
 
-class NetworkSource(override val url: String, private val customFileName: String = "") : Source {
+open class NetworkSource(override val url: String, private val customFileName: String = "") : Source {
 
     override val file: File
         get() {
