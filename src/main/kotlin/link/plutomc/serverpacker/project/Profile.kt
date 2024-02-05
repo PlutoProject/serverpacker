@@ -6,12 +6,11 @@ import link.plutomc.serverpacker.source.Source
 import java.io.File
 
 class Profile(
-    private val name: String,
+    val name: String,
     private var version: String,
-    private var software: Source,
+    var software: Source,
     var profileDir: File,
 ) {
-
 
     var root = RootFolder(this)
     var plugins = Folder("plugins", this)
