@@ -5,7 +5,7 @@ plugins {
     kotlin("jvm") version "1.8.21"
 }
 
-group = "link.plutomc.serverpacker"
+group = "ink.pmc.serverpacker"
 version = "1.0.0"
 
 extra("")
@@ -47,5 +47,5 @@ tasks.jar {
 }
 
 application {
-    mainClass = "link.plutomc.serverpacker.ServerPackerKt"
+    mainClass = "ink.pmc.serverpacker.ServerPackerKt"
 }
