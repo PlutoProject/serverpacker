@@ -1,5 +1,6 @@
 package ink.pmc.serverpacker.tasks
 
+import ink.pmc.serverpacker.logger
 import ink.pmc.serverpacker.project.Profile
 import ink.pmc.serverpacker.utils.copyFileOrDirectory
 import java.io.File
@@ -7,7 +8,7 @@ import java.io.File
 object TaskProfileCopyFiles : Task {
 
     override fun run(profile: Profile) {
-        ink.pmc.serverpacker.logger.info("Copying cache files for ${profile.name}...")
+        logger.info("Copying cache files for ${profile.name}...")
 
         copyFileOrDirectory(profile.software.file, File(profile.profileDir, profile.software.file.name))
 

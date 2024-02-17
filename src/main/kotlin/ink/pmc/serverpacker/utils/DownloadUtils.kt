@@ -1,5 +1,6 @@
 package ink.pmc.serverpacker.utils
 
+import ink.pmc.serverpacker.logger
 import okhttp3.Request
 import okhttp3.Response
 import java.io.File
@@ -14,7 +15,7 @@ object DownloadUtils {
 
     fun download(source: String, destFile: File): Boolean {
         if (destFile.exists()) {
-            ink.pmc.serverpacker.logger.info("${destFile.name} already existed in cache! Skipped download.")
+            logger.info("${destFile.name} already existed in cache! Skipped download.")
             return true
         }
 
@@ -26,7 +27,7 @@ object DownloadUtils {
         val rsp = NetworkUtils.HTTP_CLIENT.newCall(req).execute()
 
         if (!rsp.isSuccessful) {
-            ink.pmc.serverpacker.logger.error("Failed to download: $source, code: ${rsp.code}, message: ${rsp.message}!")
+            logger.error("Failed to download: $source, code: ${rsp.code}, message: ${rsp.message}!")
             return false
         }
 
@@ -49,7 +50,7 @@ object DownloadUtils {
             outputStream.write(buffer, 0, bytesRead)
         }
 
-        ink.pmc.serverpacker.logger.info("Downloaded: $source")
+        logger.info("Downloaded: $source")
         return true
     }
 

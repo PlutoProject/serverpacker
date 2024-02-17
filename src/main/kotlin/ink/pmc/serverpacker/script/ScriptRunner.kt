@@ -1,5 +1,6 @@
 package ink.pmc.serverpacker.script
 
+import ink.pmc.serverpacker.logger
 import ink.pmc.serverpacker.project.Project
 import java.io.File
 import kotlin.script.experimental.api.EvaluationResult
@@ -23,13 +24,13 @@ object ScriptRunner {
                     }
 
                     else -> {
-                        ink.pmc.serverpacker.logger.error("Script has no return value!")
+                        logger.error("Script has no return value!")
                     }
                 }
             }
 
             else -> {
-                ink.pmc.serverpacker.logger.error("Script execution failed!")
+                logger.error("Script execution failed!")
             }
         }
 

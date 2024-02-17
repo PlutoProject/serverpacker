@@ -3,6 +3,7 @@ package ink.pmc.serverpacker.dsl
 import ink.pmc.serverpacker.dsl.source.DSLLocalSource
 import ink.pmc.serverpacker.dsl.source.DSLModrinthSource
 import ink.pmc.serverpacker.dsl.source.DSLNetworkSource
+import ink.pmc.serverpacker.logger
 import ink.pmc.serverpacker.source.LocalSource
 import ink.pmc.serverpacker.source.ModrinthSource
 import ink.pmc.serverpacker.source.NetworkSource
@@ -19,7 +20,7 @@ class DSLFolder {
         if ((dslModrinthSource.projectId == null && dslModrinthSource.gameVersion == null) &&
             dslModrinthSource.versionId == null
         ) {
-            ink.pmc.serverpacker.logger.error("You haven't configure a Modrinth source's properties!")
+            logger.error("You haven't configure a Modrinth source's properties!")
             return
         }
 
@@ -41,7 +42,7 @@ class DSLFolder {
         dslLocalSource.block()
 
         if (dslLocalSource.file == null) {
-            ink.pmc.serverpacker.logger.error("You haven't configure a local source's file!")
+            logger.error("You haven't configure a local source's file!")
             return
         }
 
@@ -53,7 +54,7 @@ class DSLFolder {
         dslNetworkSource.block()
 
         if (dslNetworkSource.url == null) {
-            ink.pmc.serverpacker.logger.error("You haven't configure a network source's url!")
+            logger.error("You haven't configure a network source's url!")
             return
         }
 

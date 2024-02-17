@@ -1,6 +1,7 @@
 package ink.pmc.serverpacker.utils
 
 import com.google.gson.JsonElement
+import ink.pmc.serverpacker.logger
 
 @Suppress("UNUSED")
 object ModrinthUtils {
@@ -12,7 +13,7 @@ object ModrinthUtils {
         val reqPair = NetworkUtils.requestAndGetRspJsonObject(url)
 
         if (!reqPair.first) {
-            ink.pmc.serverpacker.logger.error("Failed to get a Modrinth version: $url")
+            logger.error("Failed to get a Modrinth version: $url")
         }
 
         val jsonObject = checkNotNull(reqPair.second)
@@ -44,7 +45,7 @@ object ModrinthUtils {
         val reqPair = NetworkUtils.requestAndGetRspJsonElement(url)
 
         if (!reqPair.first) {
-            ink.pmc.serverpacker.logger.error("Failed to get a Modrinth project: $url")
+            logger.error("Failed to get a Modrinth project: $url")
         }
 
         val jsonElement = checkNotNull(reqPair.second)

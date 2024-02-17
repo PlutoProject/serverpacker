@@ -1,5 +1,6 @@
 package ink.pmc.serverpacker.dsl
 
+import ink.pmc.serverpacker.logger
 import ink.pmc.serverpacker.project.Profile
 import ink.pmc.serverpacker.project.Project
 import ink.pmc.serverpacker.utils.dirCheckAndCreate
@@ -10,7 +11,7 @@ fun project(block: DSLProject.() -> Unit): Project? {
     dslProject.block()
 
     if (dslProject.name == null) {
-        ink.pmc.serverpacker.logger.error("You haven't set project's name!")
+        logger.error("You haven't set project's name!")
         return null
     }
 
@@ -33,17 +34,17 @@ class DSLProject {
         dslProfile.block()
 
         if (dslProfile.name == null) {
-            ink.pmc.serverpacker.logger.error("You haven't set profile's name!")
+            logger.error("You haven't set profile's name!")
             return
         }
 
         if (dslProfile.version == null) {
-            ink.pmc.serverpacker.logger.error("You haven't set profile's version!")
+            logger.error("You haven't set profile's version!")
             return
         }
 
         if (dslProfile.software == null) {
-            ink.pmc.serverpacker.logger.error("You haven't set profile's software!")
+            logger.error("You haven't set profile's software!")
             return
         }
 
