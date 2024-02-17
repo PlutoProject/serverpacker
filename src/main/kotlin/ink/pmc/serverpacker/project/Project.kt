@@ -4,10 +4,10 @@ class Project(
     private val name: String
 ) {
 
-    private val profiles = mutableListOf<Profile>()
+    val profiles = mutableListOf<Profile>()
 
     fun addProfile(profile: Profile) {
-
+        profiles.add(profile)
     }
 
 }
